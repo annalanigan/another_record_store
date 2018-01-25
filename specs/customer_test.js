@@ -7,12 +7,14 @@ describe('Customer Test', function() {
   var record1;
   var record2;
   var record3;
+  var record4;
 
   beforeEach(function() {
     customer = new Customer("Anna", 500.00);
     record1 = new Record('Michael J', 'Bad', 'Pop', 10.99);
-    record2 = new Record('My Type', 'Saint Motel', 'Jazz', 15);
-    record3 = new Record('My Type', 'Saint Motel', 'Jazz', 15);
+    record2 = new Record('My Type', 'Saint Motel', 'Jazz', 15.00);
+    record3 = new Record('My Type', 'Saint Motel', 'Jazz', 15.00);
+    record4 = new Record('Adagio', 'Mozart', 'Classical', 150.00);
   })
 
   it('should create with a name and wallet', function() {
@@ -39,7 +41,24 @@ describe('Customer Test', function() {
     customer.buyRecord(record1);
     customer.buyRecord(record2);
     customer.buyRecord(record3);
-    assert.strictEqual(customer.totalCollectionValue(), 40.99);
+    assert.strictEqual(customer.totalValue(customer.collection), 40.99);
   })
+
+  it('can get value of all records of a genre', function() {
+    customer.buyRecord(record1);
+    customer.buyRecord(record2);
+    customer.buyRecord(record3);
+    assert.strictEqual(customer.totalValue(customer.genreSearch("Jazz")), 30.00);
+  })
+
+  it('can get the most expensive record', function(){
+    customer.buyRecord(record1);
+    customer.buyRecord(record2);
+    customer.buyRecord(record3);
+    customer.buyRecord(record4);
+    assert.strictEqual(customer.findMostValuable(), record4);
+  })
+
+
 
 })

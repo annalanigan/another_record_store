@@ -40,12 +40,24 @@ Customer.prototype.sellRecord = function (record) {
   this.increaseFunds(record.price);
 };
 
-Customer.prototype.totalCollectionValue = function () {
-  let totalValue = this.collection.reduce(function(accumulator, next){
+Customer.prototype.totalValue = function (array) {
+  let totalValue = array.reduce(function(accumulator, next){
     return accumulator + next.price;
   }, 0)
   // return _.round(totalValue, 2);
   return totalValue;
 };
+
+Customer.prototype.genreSearch = function (genre) {
+  return this.collection.filter(record => record.genre === genre);
+};
+
+Customer.prototype.findMostValuable = function () {
+  return this.collection.reduce(function(largest, next) {
+    return largest.price > next.price? largest : next;
+  })
+};
+
+
 
 module.exports = Customer;
