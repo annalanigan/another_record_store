@@ -18,4 +18,17 @@ describe('Record Store Test', function() {
       assert.strictEqual(recordStore.city, "Edinburgh");
   })
 
+  it('should have an opening balance of zero', function() {
+    assert.strictEqual(recordStore.balance, 0);
+  })
+
+  it('should have an empty inventory on creation', function() {
+    assert.strictEqual(recordStore.inventory.length, 0);
+  })
+
+  it('should be able to add a record', function() {
+    recordStore.addRecord(record1);
+    assert.strictEqual(recordStore.inventory.length, 1);
+  })
+
 })
