@@ -58,6 +58,16 @@ Customer.prototype.findMostValuable = function () {
   })
 };
 
+Customer.prototype.sortByValueAsc = function () {
+  return this.collection.sort(function(a, b) {
+    return a.price - b.price;
+  })
+};
 
+Customer.prototype.sortByValueDsc = function () {
+  return this.collection.sort(function(a, b) {
+    return b.price - a.price;
+  })
+};
 
 module.exports = Customer;

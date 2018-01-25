@@ -59,6 +59,25 @@ describe('Customer Test', function() {
     assert.strictEqual(customer.findMostValuable(), record4);
   })
 
+  it('can sort the collection in ascending value order', function(){
+    customer.buyRecord(record4);
+    customer.buyRecord(record1);
+    customer.buyRecord(record2);
+    customer.sortByValueAsc();
+    assert.strictEqual(customer.collection[0], record1);
+    assert.strictEqual(customer.collection[1], record2);
+    assert.strictEqual(customer.collection[2], record4);
+  })
+
+  it('can sort the collection descending value order', function(){
+    customer.buyRecord(record4);
+    customer.buyRecord(record1);
+    customer.buyRecord(record2);
+    customer.sortByValueDsc();
+    assert.strictEqual(customer.collection[2], record1);
+    assert.strictEqual(customer.collection[1], record2);
+    assert.strictEqual(customer.collection[0], record4);
+  })
 
 
 })
