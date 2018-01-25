@@ -31,4 +31,38 @@ describe('Record Store Test', function() {
     assert.strictEqual(recordStore.inventory.length, 1);
   })
 
+  it('should be able to list the inventory', function() {
+    recordStore.addRecord(record1);
+    recordStore.addRecord(record2);
+    recordStore.listInventory();
+  })
+
+  it('should be able to sell a record - remove from inventory', function(){
+    recordStore.addRecord(record1);
+    recordStore.addRecord(record2);
+    recordStore.sellRecord(record1);
+    assert.strictEqual(recordStore.inventory.length, 1);
+    assert.strictEqual(recordStore.balance, 10.99);
+  })
+
+  it('should be able to get total inventory value', function() {
+    recordStore.addRecord(record1);
+    recordStore.addRecord(record2);
+    assert.strictEqual(recordStore.totalInventoryValue(), 25.99);
+  })
+
+  it('should be able to return total value', function() {
+    recordStore.addRecord(record1);
+    recordStore.addRecord(record2);
+    recordStore.sellRecord(record1);
+    assert.strictEqual(recordStore.totalValue(), 25.99);
+    assert.strictEqual(recordStore.inventory.length, 1);
+  })
+
+  it('should return all records of a given genre', function(){
+    recordStore.addRecord(record1);
+    recordStore.addRecord(record2);
+    assert.strictEqual(recordStore.genreSearch('Pop')[0], record1);
+  })
+
 })
