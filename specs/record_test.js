@@ -18,4 +18,8 @@ describe('Record Test', function(){
     assert.strictEqual(record2.price, 15);
   })
 
+  it('should print the records properties as a string', function(){
+    assert.strictEqual(record1.toString(), 'artist: Michael J, title: Bad, genre: Pop, price: 10.99' )
+  })
+
 })
