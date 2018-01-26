@@ -40,7 +40,7 @@ RecordStore.prototype.totalInventoryValue = function () {
 
 RecordStore.prototype.totalValue = function () {
   let totalValue = this.totalInventoryValue() + this.balance;
-  return _.round(totalValue, 2);
+  return _.round(totalValue,'' 2);
 };
 
 RecordStore.prototype.genreSearch = function (genre) {
